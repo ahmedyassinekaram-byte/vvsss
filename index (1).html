@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Highlanders</title>
+<meta name="description" content="Highlanders is a competitive Discord clan. Join the server, meet the team and read the rules.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Highlanders">
+<meta property="og:description" content="A competitive Discord clan for players who show up, play to win, and have each other’s backs.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23b3121c'/><text x='32' y='47' font-size='42' text-anchor='middle' fill='white' font-family='Impact,sans-serif'>H</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --ink: #130808;
+    --line: #2a1214;
+    --blood: #b3121c;
+    --red: #ff2a2a;
+    --bone: #f2e9e6;
+    --ash: #a89a97;
+    --display: "Anton", Impact, "Arial Narrow", sans-serif;
+    --body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --cut: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  body { background: var(--black); color: var(--bone); font-family: var(--body); font-size: 1.05rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+
+  /* Buttons */
+  .btn { display: inline-block; padding: 1rem 2.2rem; font-weight: 600; font-size: 1.05rem; text-decoration: none; background: var(--red); color: var(--black); clip-path: var(--cut); transition: background .15s, color .15s; }
+  .btn:hover { background: var(--bone); }
+  .btn.dark { background: #1d0b0d; color: var(--bone); }
+  .btn.dark:hover { background: var(--bone); color: var(--black); }
+  .btn.small { padding: .55rem 1.3rem; font-size: .95rem; clip-path: none; }
+
+  /* Navigation */
+  nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .9rem 5vw; background: rgba(0,0,0,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .logo { display: flex; align-items: center; gap: .7rem; text-decoration: none; font-family: var(--display); font-size: 1.35rem; letter-spacing: .06em; text-transform: uppercase; }
+  .mark { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; background: var(--red); color: var(--black); font-size: 1rem; clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); }
+  nav ul { display: flex; gap: 1.8rem; list-style: none; margin-left: auto; }
+  nav ul a { text-decoration: none; color: var(--ash); font-weight: 500; transition: color .15s; }
+  nav ul a:hover { color: var(--bone); }
+
+  /* Hero */
+  .hero { position: relative; overflow: hidden; min-height: 86vh; display: flex; flex-direction: column; justify-content: center; padding: 5rem 5vw; }
+  .slab { position: absolute; top: -20%; right: -14%; width: 52vw; height: 140%; background: linear-gradient(160deg, var(--blood), #6d0a10); transform: skewX(-14deg); animation: slab .9s cubic-bezier(.2,.8,.2,1) both; }
+  .hero > *:not(.slab) { position: relative; }
+  .hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(3.6rem, 15vw, 12rem); line-height: .9; text-transform: uppercase; animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
+  .lead { max-width: 33rem; margin: 1.8rem 0 2.2rem; padding-left: 1.1rem; border-left: 4px solid var(--red); font-size: 1.2rem; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+  #online { font-weight: 500; }
+  #online::before { content: ""; display: inline-block; width: .6rem; height: .6rem; margin-right: .5rem; border-radius: 50%; background: #3ddc84; }
+  #online:empty { display: none; }
+  @keyframes rise { from { opacity: 0; transform: translateY(40px); } }
+  @keyframes slab { from { transform: translateX(30vw) skewX(-14deg); opacity: 0; } }
+
+  /* Sections */
+  section { padding: 5.5rem 5vw; }
+  .alt { background: var(--ink); border-block: 1px solid var(--line); }
+  h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.05; text-transform: uppercase; margin-bottom: 2.6rem; }
+  h2::after { content: ""; display: block; width: 3.5rem; height: 5px; margin-top: .8rem; background: var(--red); }
+  .wrap { max-width: 72rem; }
+
+  .about { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; }
+  .about h3 { font-size: 1.3rem; margin-bottom: .4rem; }
+  .about p { color: var(--ash); max-width: 34ch; }
+
+  .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .9rem; list-style: none; }
+  .games li { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; background: var(--black); border: 1px solid var(--line); font-weight: 600; font-size: 1.1rem; transition: border-color .15s; }
+  .games li:hover { border-color: var(--red); }
+  .games .ico { flex: none; display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 2px solid var(--red); color: var(--red); font-family: var(--display); font-size: 1.3rem; }
+
+  /* Rules */
+  .rules { max-width: 48rem; }
+  .rules details { border-bottom: 1px solid var(--line); }
+  .rules summary { display: flex; align-items: center; gap: 1.1rem; padding: 1.15rem 0; cursor: pointer; list-style: none; font-family: var(--display); font-size: 1.5rem; letter-spacing: .02em; }
+  .rules summary::-webkit-details-marker { display: none; }
+  .rules summary .n { color: var(--red); min-width: 1.6rem; }
+  .rules summary::after { content: "+"; margin-left: auto; color: var(--red); font-size: 1.8rem; }
+  .rules details[open] summary::after { content: "\2212"; }
+  .rules ul { list-style: none; padding: 0 0 1.3rem 2.7rem; }
+  .rules li { position: relative; padding: .2rem 0 .2rem 1.2rem; color: var(--ash); }
+  .rules li::before { content: ""; position: absolute; left: 0; top: .95em; width: .5rem; height: 2px; background: var(--red); }
+
+  /* Roster */
+  .leader { display: flex; align-items: center; gap: 1.6rem; padding: 1.6rem; margin-bottom: 1rem; background: var(--black); border-left: 6px solid var(--red); }
+  .leader .av { width: 5rem; height: 5rem; font-size: 2.6rem; }
+  .leader strong { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.1; }
+  .leader span { color: var(--red); font-weight: 600; }
+  .roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .9rem; }
+  .member { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; background: var(--black); border: 1px solid var(--line); }
+  .member strong { display: block; line-height: 1.2; }
+  .member span { color: var(--ash); font-size: .95rem; }
+  .av { flex: none; display: grid; place-items: center; width: 2.9rem; height: 2.9rem; background: var(--red); color: var(--black); font-family: var(--display); font-size: 1.4rem; text-transform: uppercase; clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); }
+
+  /* Join */
+  .join { background: var(--blood); padding-block: 6rem; }
+  .join h2::after { background: var(--black); }
+  .join p { max-width: 34rem; margin-bottom: 2rem; font-size: 1.15rem; }
+
+  footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .8rem; padding: 2rem 5vw; color: var(--ash); font-size: .95rem; }
+  footer a:hover { color: var(--bone); }
+
+  @media (max-width: 720px) {
+    nav ul { display: none; }
+    nav .btn { margin-left: auto; }
+    section { padding-block: 4rem; }
+    .slab { width: 80vw; right: -40%; }
+    .leader { flex-direction: column; align-items: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .slab, .hero h1 { animation: none; }
+    .btn, .games li { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <a class="logo" href="#top"><span class="mark" data-short>HL</span><span data-name>Highlanders</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#games">Games</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#rules">Rules</a></li>
+  </ul>
+  <a class="btn small" data-invite href="#">Join Discord</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="slab" aria-hidden="true"></div>
+  <h1 data-name>Highlanders</h1>
+  <p class="lead" data-tagline>A competitive Discord clan for players who show up, play to win, and have each other’s backs.</p>
+  <div class="actions">
+    <a class="btn" data-invite href="#">Join our Discord</a>
+    <a class="btn dark" href="#rules">Read the rules</a>
+    <span id="online"></span>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About the clan</h2>
+    <div class="about">
+      <div><h3>Weekly scrims</h3><p>Practice matches every week, so you improve against real opponents.</p></div>
+      <div><h3>Voice always open</h3><p>Hop into a voice channel any time and find a squad in minutes.</p></div>
+      <div><h3>Tournaments</h3><p>We enter community tournaments and track results together.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="games" class="alt">
+  <div class="wrap">
+    <h2>Games we play</h2>
+    <ul class="games" id="games-list"></ul>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <h2>The team</h2>
+    <div id="leader"></div>
+    <div class="roster" id="roster"></div>
+  </div>
+</section>
+
+<section id="rules" class="alt">
+  <div class="wrap">
+    <h2>Clan rules</h2>
+    <div class="rules" id="rules-list"></div>
+  </div>
+</section>
+
+<section class="join" id="join">
+  <div class="wrap">
+    <h2>Ready to join?</h2>
+    <p>Open the invite, say hello in the welcome channel, and a leader will get you set up.</p>
+    <a class="btn dark" data-invite href="#">Join our Discord</a>
+  </div>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> skdev. All rights reserved. <span data-name>Highlanders</span> is not affiliated with Discord Inc.</span>
+  <span>Designed and developed by skdev</span>
+  <a data-invite href="#">Discord invite</a>
+</footer>
+
+<script>
+  // ===== EDIT THIS SECTION =====
+  const CLAN = {
+    name: "Highlanders",
+    short: "HL",
+    invite: "https://discord.gg/ADUvdvfgeh",
+    serverId: "", // optional: Discord server ID, shows the online count (enable Server Settings > Widget)
+    leader: { name: "OFF MAN", role: "Clan Leader" },
+    members: [
+      { name: "SMOKE", role: "Member" },
+      { name: "Han chai", role: "Member" },
+      { name: "S", role: "Member" },
+      { name: "TANJIRO", role: "Member" },
+      { name: "Tounik", role: "Member" },
+      { name: "A", role: "Member" },
+    ],
+    games: ["Stumble Guys", "Garticphone", "Code Names", "WareWolf", "Parchisi", "Chess", "Plato", "PUBG", "Casino"],
+    rules: [
+      ["Respect Everyone", ["Respect all clan members.", "No toxicity, bullying, or unnecessary drama.", "No racism, hate speech, or personal attacks."]],
+      ["Stay Active", ["Be active in-game and in the clan chat.", "Inform a leader if you’ll be inactive for a long time.", "Inactive members may be removed."]],
+      ["Teamwork First", ["Help clan members whenever possible.", "Participate in clan wars, events, and activities.", "Never abandon your teammates without a valid reason."]],
+      ["Follow Leadership", ["Respect the clan leader and co-leaders.", "Follow clan decisions and instructions.", "Do not abuse your rank or permissions."]],
+      ["No Cheating", ["No hacks, cheats, exploits, or unfair gameplay.", "No account scams or stealing.", "Keep the clan’s reputation clean."]],
+      ["Clan Chat Rules", ["No spam or flooding the chat.", "No unnecessary arguments or drama.", "Keep conversations friendly and respectful."]],
+      ["Loyalty & Commitment", ["Do not betray clan members.", "Do not share private clan information without permission.", "Represent the clan with pride."]],
+      ["Promotions & Punishments", ["Promotions are earned through loyalty, activity, skill, and teamwork.", "Breaking rules may result in a warning, demotion, or removal."]]
+    ]
+  };
+  // =============================
+
+  const $ = (s) => document.querySelector(s);
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+  document.title = CLAN.name;
+  document.querySelectorAll("[data-name]").forEach(e => e.textContent = CLAN.name);
+  document.querySelectorAll("[data-short]").forEach(e => e.textContent = CLAN.short);
+  document.querySelectorAll("[data-invite]").forEach(e => e.href = CLAN.invite);
+  $("#year").textContent = new Date().getFullYear();
+
+  CLAN.games.forEach(g => {
+    const li = el("li");
+    li.append(el("span", "ico", g[0]), el("span", null, g));
+    $("#games-list").append(li);
+  });
+
+  const person = (p, cls) => {
+    const d = el("div", cls), t = el("div");
+    t.append(el("strong", null, p.name), el("span", null, p.role));
+    d.append(el("div", "av", p.name[0]), t);
+    return d;
+  };
+  $("#leader").append(person(CLAN.leader, "leader"));
+  CLAN.members.forEach(m => $("#roster").append(person(m, "member")));
+
+  CLAN.rules.forEach(([title, points], i) => {
+    const d = el("details"), s = el("summary"), ul = el("ul");
+    if (i === 0) d.open = true;
+    s.append(el("span", "n", i + 1), el("span", null, title));
+    points.forEach(p => ul.append(el("li", null, p)));
+    d.append(s, ul);
+    $("#rules-list").append(d);
+  });
+
+  if (CLAN.serverId) {
+    fetch(`https://discord.com/api/guilds/${CLAN.serverId}/widget.json`)
+      .then(r => r.json())
+      .then(d => { if (d.presence_count != null) $("#online").textContent = d.presence_count + " online now"; })
+      .catch(() => {});
+  }
+</script>
+</body>
+</html>
